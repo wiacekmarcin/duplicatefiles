@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include <QApplication>
 
+#ifndef TEST_DP
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -9,3 +11,10 @@ int main(int argc, char *argv[])
     
     return a.exec();
 }
+
+#else
+#include "test.h"
+QTEST_MAIN(testdpdir)
+#include "moc_test.cpp"
+
+#endif

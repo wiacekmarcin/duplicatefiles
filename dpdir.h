@@ -12,6 +12,9 @@
 #include "dpfile.h"
 #include "taskprogress.h"
 
+// Klasa to testów
+class testdpdir;
+
 class DPDir
 {
 public:
@@ -20,20 +23,22 @@ public:
 
     QString path() const { return path_; }
 
+    friend class testdpdir;
+
 private:
-    QString dirname_; //nazwa katalogu
-    QString path_; //ściezka dostępu do katalogu
-    quint32 nfiles; // liczba plików w całym drzewie
-    quint32 ndirs;  // liczba katalogów w całym drzewie
+    QString dirname_; // nazwa katalogu
+    QString path_;    // ściezka dostępu do katalogu
+    quint32 nfiles;   // liczba plików w całym drzewie
+    quint32 ndirs;    // liczba katalogów w całym drzewie
 
-    quint64 sfiles; //rozmiar wszystkich plików w całym drzewie
-
-
-    QSet<DPFile*> files; //pliki w danych katalogu
-    QSet<DPDir*> dirs;  //katalogi w danych katalogu
+    quint64 sfiles;   // rozmiar wszystkich plików w całym drzewie
 
 
-    DPDir * parent; //wskaźnik na rodzica
+    QSet<DPFile*> files; // pliki w danych katalogu
+    QSet<DPDir*> dirs;   // katalogi w danych katalogu
+
+
+    DPDir * parent;      // wskaźnik na rodzica
 
 };
 
