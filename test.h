@@ -2,9 +2,11 @@
 #define TESTDPDIR_H
 
 #include <QObject>
-#include <QtTest/QtTest>
+
+
 
 #ifdef TEST_DP
+#include <QtTest/QtTest>
 class testdpdir : public QObject
 {
     Q_OBJECT

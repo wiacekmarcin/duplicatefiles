@@ -1,29 +1,27 @@
 #include "test.h"
 
+
 #ifdef TEST_DP
+
+#include <QtTest/QTest>
+
 testdpdir::testdpdir(QObject *parent) :
     QObject(parent)
 {
 }
 
 #include "dpdir.h"
-
 void testdpdir::constructor()
 {
-    DPDir a = DPDir(NULL, QString('/home/marcinw/TestDuplicateFiles'), QString("A"));
-  /*  a.dirname_;
-    QString path_;    // ściezka dostępu do katalogu
-    quint32 nfiles;   // liczba plików w całym drzewie
-    quint32 ndirs;    // liczba katalogów w całym drzewie
+    DPDir a = DPDir(NULL, QString('../test'), QString("A"));
 
-    quint64 sfiles;   // rozmiar wszystkich plików w całym drzewie
-
-
-    QSet<DPFile*> files; // pliki w danych katalogu
-    QSet<DPDir*> dirs;   // katalogi w danych katalogu
-
-
-    DPDir * parent;      // wskaźnik na r*/
+    QCOMPARE(QString('A') , a.dirname_);
+    QCOMPARE(QString('/home/mwiacek/development/test') , a.path_);
+    a.walk(NULL);
+    QCOMPARE((int)329 , (int)a.nfiles);
+    QCOMPARE((int)135 , (int)a.ndirs);
+    QCOMPARE((int)135 , (int)a.ndirs);
+    QCOMPARE((int)105628 , (int)a.sfiles);
 }
 
 

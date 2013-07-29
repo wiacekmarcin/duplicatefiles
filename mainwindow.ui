@@ -14,6 +14,35 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>400</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuPlik">
+    <property name="title">
+     <string>Plik</string>
+    </property>
+    <addaction name="actionWybierz_katalog"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuAkcja">
+    <property name="title">
+     <string>Akcja</string>
+    </property>
+   </widget>
+   <addaction name="menuPlik"/>
+   <addaction name="menuAkcja"/>
+  </widget>
+  <action name="actionWybierz_katalog">
+   <property name="text">
+    <string>Wybierz katalog</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

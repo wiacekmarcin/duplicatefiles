@@ -1,9 +1,9 @@
 #ifndef ERR_H
 #define ERR_H
 
-#include <QException>
+#include <exception>
 
-class Sha1Exception : public QException
+class Sha1Exception : public std::exception
 {
 public:
     Sha1Exception(const QString & msg) throw()

@@ -1,7 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.0.2
+** Created: Mon Jul 29 20:31:51 2013
+**      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,28 +11,49 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QMainWindow>
-#include <QtWidgets/QWidget>
+#include <QtGui/QAction>
+#include <QtGui/QApplication>
+#include <QtGui/QButtonGroup>
+#include <QtGui/QHeaderView>
+#include <QtGui/QMainWindow>
+#include <QtGui/QMenu>
+#include <QtGui/QMenuBar>
+#include <QtGui/QWidget>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_MainWindow
 {
 public:
+    QAction *actionWybierz_katalog;
     QWidget *centralWidget;
+    QMenuBar *menuBar;
+    QMenu *menuPlik;
+    QMenu *menuAkcja;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
-            MainWindow->setObjectName(QStringLiteral("MainWindow"));
+            MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(400, 300);
+        actionWybierz_katalog = new QAction(MainWindow);
+        actionWybierz_katalog->setObjectName(QString::fromUtf8("actionWybierz_katalog"));
         centralWidget = new QWidget(MainWindow);
-        centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         MainWindow->setCentralWidget(centralWidget);
+        menuBar = new QMenuBar(MainWindow);
+        menuBar->setObjectName(QString::fromUtf8("menuBar"));
+        menuBar->setGeometry(QRect(0, 0, 400, 20));
+        menuPlik = new QMenu(menuBar);
+        menuPlik->setObjectName(QString::fromUtf8("menuPlik"));
+        menuAkcja = new QMenu(menuBar);
+        menuAkcja->setObjectName(QString::fromUtf8("menuAkcja"));
+        MainWindow->setMenuBar(menuBar);
+
+        menuBar->addAction(menuPlik->menuAction());
+        menuBar->addAction(menuAkcja->menuAction());
+        menuPlik->addAction(actionWybierz_katalog);
+        menuPlik->addSeparator();
 
         retranslateUi(MainWindow);
 
@@ -40,7 +62,10 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0, QApplication::UnicodeUTF8));
+        actionWybierz_katalog->setText(QApplication::translate("MainWindow", "Wybierz katalog", 0, QApplication::UnicodeUTF8));
+        menuPlik->setTitle(QApplication::translate("MainWindow", "Plik", 0, QApplication::UnicodeUTF8));
+        menuAkcja->setTitle(QApplication::translate("MainWindow", "Akcja", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

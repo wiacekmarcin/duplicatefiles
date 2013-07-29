@@ -17,7 +17,7 @@ SOURCES += main.cpp\
             taskprogress.cpp \
             taskprogressmanager.cpp \
             mainwindow.cpp \
-    dptest.cpp
+    test.cpp
 
 HEADERS  += dpfile.h \
             dpdir.h \
@@ -26,9 +26,9 @@ HEADERS  += dpfile.h \
             taskprogress.h \
             taskprogressmanager.h \
             mainwindow.h \
-    dptest.h
+    test.h
 
 FORMS    += mainwindow.ui
 
-OTHER_FILES += \
-    test.pro
+
+
