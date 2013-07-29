@@ -4,14 +4,14 @@
 #include "taskprogress.h"
 
 DPDir::DPDir(DPDir * parent, const QString &root, const QString &name)
-    : dirname_(name), path_(QDir(root).absolutePath()), parent(parent)
-
+    : dirname_(name), path_(QDir(root).absolutePath()), parent(parent), ndirs(0), nfiles(0), sfiles(0)
 {
 }
 
 QPair<quint64, QPair<quint64, quint64> > DPDir::walk(TaskProgressDirsAndFiles * task)
 {
     QDir dir = QDir(path_);
+    dir.cd(dirname_);
     dir.setFilter(QDir::AllEntries | QDir::NoDotAndDotDot);
 
     if (task)
@@ -25,7 +25,7 @@ QPair<quint64, QPair<quint64, quint64> > DPDir::walk(TaskProgressDirsAndFiles * 
     for (QFileInfoList::iterator it = flist.begin(); it != flist.end(); ++it)
     {
         if (it->isDir()) {
-            subdir = new DPDir(this, path_, it->baseName());
+            subdir = new DPDir(this, dir.absolutePath(), it->baseName());
             dirs.insert(subdir);
             QPair<quint64, QPair<quint64, quint64> > numbers = subdir->walk(task);
             ndirs += numbers.second.second + 1; //ilosc katalogow ponizej plus 1

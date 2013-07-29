@@ -13,7 +13,7 @@ testdpdir::testdpdir(QObject *parent) :
 #include "dpdir.h"
 void testdpdir::constructor()
 {
-    DPDir a = DPDir(NULL, QString('../test'), QString("A"));
+    DPDir a = DPDir(NULL, QString('~/development/test'), QString("A"));
 
     QCOMPARE(QString('A') , a.dirname_);
     QCOMPARE(QString('/home/mwiacek/development/test') , a.path_);
