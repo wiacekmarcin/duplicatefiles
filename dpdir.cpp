@@ -4,14 +4,15 @@
 #include "taskprogress.h"
 
 DPDir::DPDir(DPDir * parent, const QString &root, const QString &name)
-    : dirname_(name), path_(QDir(root).absolutePath()), parent(parent), ndirs(0), nfiles(0), sfiles(0)
+    : dirname_(name), path_(QDir(root).absoluteFilePath(name)), nfiles_(0), ndirs_(0), sfiles_(0), parent(parent)
 {
+    files_.clear();
+    dirs_.clear(); 
 }
 
 QPair<quint64, QPair<quint64, quint64> > DPDir::walk(TaskProgressDirsAndFiles * task)
 {
     QDir dir = QDir(path_);
-    dir.cd(dirname_);
     dir.setFilter(QDir::AllEntries | QDir::NoDotAndDotDot);
 
     if (task)
@@ -26,7 +27,7 @@ QPair<quint64, QPair<quint64, quint64> > DPDir::walk(TaskProgressDirsAndFiles * 
     {
         if (it->isDir()) {
             subdir = new DPDir(this, dir.absolutePath(), it->baseName());
-            dirs.insert(subdir);
+            dirs_.insert(subdir);
             QPair<quint64, QPair<quint64, quint64> > numbers = subdir->walk(task);
             ndirs += numbers.second.second + 1; //ilosc katalogow ponizej plus 1
             sfiles += numbers.first;
@@ -36,8 +37,8 @@ QPair<quint64, QPair<quint64, quint64> > DPDir::walk(TaskProgressDirsAndFiles * 
         }
         else if (it->isFile())
         {
-            files.insert(new DPFile(this, it->completeBaseName(), it->size(), it->created(), it->lastModified()));
             ++nfiles;
+            files_.insert(new DPFile(this, it->completeBaseName(), it->size(), it->created(), it->lastModified()));
             sfiles += it->size();
             if (task) {
                 *task += it->size();
@@ -49,9 +50,9 @@ QPair<quint64, QPair<quint64, quint64> > DPDir::walk(TaskProgressDirsAndFiles * 
         }
     }
 
-    this->nfiles = nfiles;
-    this->sfiles = sfiles;
-    this->ndirs = ndirs;
+    this->nfiles_ = nfiles;
+    this->sfiles_ = sfiles;
+    this->ndirs_ = ndirs;
 
     return QPair<quint64, QPair<quint64, quint64> >(sfiles, QPair<quint64, quint64>(nfiles, ndirs));
 }

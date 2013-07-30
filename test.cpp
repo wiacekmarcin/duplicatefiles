@@ -13,15 +13,15 @@ testdpdir::testdpdir(QObject *parent) :
 #include "dpdir.h"
 void testdpdir::constructor()
 {
-    DPDir a = DPDir(NULL, QString('~/development/test'), QString("A"));
+    DPDir a = DPDir(NULL, QString("~/development/test"), QString("A"));
 
-    QCOMPARE(QString('A') , a.dirname_);
+    QCOMPARE(QString("A") , a.dirname_);
     QCOMPARE(QString('/home/mwiacek/development/test') , a.path_);
     a.walk(NULL);
-    QCOMPARE((int)329 , (int)a.nfiles);
-    QCOMPARE((int)135 , (int)a.ndirs);
-    QCOMPARE((int)135 , (int)a.ndirs);
-    QCOMPARE((int)105628 , (int)a.sfiles);
+    QCOMPARE((int)329 , (int)a.nfiles_);
+    QCOMPARE((int)135 , (int)a.ndirs_);
+    QCOMPARE((int)135 , (int)a.ndirs_);
+    QCOMPARE((int)105628 , (int)a.sfiles_);
 }
 
 

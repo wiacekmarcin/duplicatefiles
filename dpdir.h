@@ -28,14 +28,14 @@ public:
 private:
     QString dirname_; // nazwa katalogu
     QString path_;    // ściezka dostępu do katalogu
-    quint32 nfiles;   // liczba plików w całym drzewie
-    quint32 ndirs;    // liczba katalogów w całym drzewie
+    quint32 nfiles_;   // liczba plików w całym drzewie
+    quint32 ndirs_;    // liczba katalogów w całym drzewie
 
-    quint64 sfiles;   // rozmiar wszystkich plików w całym drzewie
+    quint64 sfiles_;   // rozmiar wszystkich plików w całym drzewie
 
 
-    QSet<DPFile*> files; // pliki w danych katalogu
-    QSet<DPDir*> dirs;   // katalogi w danych katalogu
+    QSet<DPFile*> files_; // pliki w danych katalogu
+    QSet<DPDir*> dirs_;   // katalogi w danych katalogu
 
 
     DPDir * parent;      // wskaźnik na rodzica
